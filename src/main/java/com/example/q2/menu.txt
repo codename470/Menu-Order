@@ -6,3 +6,15 @@ cheese
 first
 2
 ---
+yeledKushi
+main
+0.1
+---
+kidBlood
+drink
+100
+---
+jewSoup
+drink
+20
+---

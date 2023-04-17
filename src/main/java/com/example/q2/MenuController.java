@@ -14,7 +14,7 @@ public class MenuController {
     @FXML
     private GridPane grid;
     @FXML
-    private TextField [] types;
+    private Label [] types;
 
     @FXML
     private ComboBox<Integer> [] cbItems;
@@ -29,41 +29,37 @@ public class MenuController {
         Menu menu = new Menu(FilesHandler.getMenu());
         HashMap<mealCourse, ArrayList<Item>> menuItems = menu.getMenu();
         ArrayList<mealCourse> keys = new ArrayList<>(menuItems.keySet());
-        types = new TextField[keys.size()];
-        checkBoxes = new CheckBox[keys.size()];
-        cbItems = new ComboBox[keys.size()];
-        double textSize = grid.getPrefWidth() / (keys.size() * keys.size());
-        double textHeight = grid.getPrefHeight() / (keys.size() * keys.size());
+        types = new Label[keys.size()];
+
         int lastIndex = 0, colCounter = 0;
         for (int i = 0; i < keys.size(); i++) {
-            types[i] = new TextField(keys.get(i).name());
-            types[i].setPrefHeight(textHeight);
-            types[i].setPrefWidth(textSize);
+            types[i] = new Label(keys.get(i).name());
+            types[i].setPrefSize(grid.getPrefWidth() / menu.getCounter() + 4, grid.getPrefHeight() / menu.getCounter() + 4);
             types[i].setId(keys.get(i).name());
             grid.add(types[i], colCounter, lastIndex);
             for (Item item : menuItems.get(keys.get(i))) {
-//                colCounter++;
                 lastIndex++;
-                TextField tf = new TextField(item.getDescription());
-                tf.setPrefHeight(textHeight);
-                tf.setPrefWidth(textSize);
+                Label tf = new Label(item.getDescription());
+                tf.setPrefSize(grid.getPrefWidth() / menu.getCounter() + 4, grid.getPrefHeight() / menu.getCounter() + 4);
                 grid.add(tf, colCounter, lastIndex);
                 CheckBox cb = new CheckBox();
                 colCounter++;
                 grid.add(cb, colCounter, lastIndex);
-                ComboBox<Integer> comboBox = new ComboBox<>();
+                ComboBox<Integer> comboBox = new ComboBox<Integer>();
+                comboBox.getItems().addAll(1,2,3,4,5,6);
                 colCounter++;
                 grid.add(comboBox, colCounter, lastIndex);
                 lastIndex++;
+                colCounter = 0;
             }
-            colCounter = 0;
+
         }
     }
     @FXML
     void orderPressed(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
-        alert.setHeaderText("Are you sure you want to delete this item?");
+        alert.setHeaderText("Do you want to complete your order?");
         alert.setContentText("This action cannot be undone.");
 
         ButtonType confirm = new ButtonType("Confirm");

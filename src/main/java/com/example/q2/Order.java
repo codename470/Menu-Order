@@ -28,7 +28,7 @@ public class Order {
     }
 
     public void closeOrder(String name){
-        //FilesHandler.saveToFile(name, this.items.toString());
+        FilesHandler.saveToFile(name, this.items.toString());
     }
 
 
