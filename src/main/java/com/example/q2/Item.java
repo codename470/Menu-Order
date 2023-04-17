@@ -28,7 +28,7 @@ public class Item {
             case "last", "desert", "sweets" -> {
                 return mealCourse.Desert;
             }
-            case "drink", "beverage", "idoGay" -> {
+            case "drink", "beverage" -> {
                 return mealCourse.Drink;
             }
         }
